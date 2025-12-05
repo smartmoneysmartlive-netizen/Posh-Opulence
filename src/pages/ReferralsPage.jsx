@@ -21,7 +21,7 @@ const ReferralsPage = ({ user }) => {
   if (!referrals) return <div>Loading...</div>;
 
   // You should replace YOUR_BOT_USERNAME with your actual bot's username
-  const referralLink = `https://t.me/YOUR_BOT_USERNAME/app?startapp=${referrals.referral_code}`;
+  const referralLink = `https://t.me/PoshOMFBot/app?startapp=${referrals.referral_code}`;
 
   return (
     <div>
