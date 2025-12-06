@@ -12,6 +12,7 @@ import PaymentPage from "./pages/PaymentPage";
 import UserHistoryPage from "./pages/UserHistoryPage";
 import ReferralsPage from "./pages/ReferralsPage";
 import SupportPage from "./pages/SupportPage";
+import AboutPage from "./pages/AboutPage"; // Import the new About page
 import AdminDashboardPage from "./pages/AdminDashboardPage";
 import AdminPackagesPage from "./pages/AdminPackagesPage";
 import AdminHistoryPage from "./pages/AdminHistoryPage";
@@ -34,7 +35,6 @@ function App() {
         if (!tg.initDataUnsafe?.user) {
           console.warn("Telegram data not found. Running in MOCK MODE.");
           const MOCK_USER_ID_TO_TEST = 987654321;
-          // const MOCK_USER_ID_TO_TEST = 54678976564;
           // const MOCK_USER_ID_TO_TEST = 123456789;
           userData = { id: MOCK_USER_ID_TO_TEST, first_name: "Test User" };
         } else {
@@ -104,6 +104,8 @@ function App() {
           <Route path="history" element={<UserHistoryPage user={user} />} />
           <Route path="referrals" element={<ReferralsPage user={user} />} />
           <Route path="support" element={<SupportPage />} />
+          <Route path="about" element={<AboutPage />} />{" "}
+          {/* Add the new route */}
           <Route path="*" element={<Navigate to="/dashboard" />} />
         </Route>
       )}

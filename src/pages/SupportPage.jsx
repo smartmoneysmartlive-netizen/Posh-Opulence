@@ -1,6 +1,13 @@
 import React from "react";
-import { FaWhatsapp, FaTelegram, FaMoon, FaSun } from "react-icons/fa";
+import {
+  FaWhatsapp,
+  FaTelegram,
+  FaMoon,
+  FaSun,
+  FaInfoCircle,
+} from "react-icons/fa";
 import { useTheme } from "../context/ThemeContext";
+import { Link } from "react-router-dom";
 
 const WHATSAPP_NUMBER = "1234567890";
 const TELEGRAM_USERNAME = "YourAdminUsername";
@@ -62,7 +69,24 @@ const SupportPage = () => {
 
       <div className="package-card">
         <div className="package-content">
-          <h3>Theme Settings</h3>
+          <h3>Application Info</h3>
+          <Link to="/about" style={{ textDecoration: "none" }}>
+            <button
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "0.5rem",
+                background: "var(--bg-surface-raised)",
+                color: "var(--text-primary)",
+                marginBottom: "1rem",
+              }}
+            >
+              <FaInfoCircle size={20} />
+              About Posh Opulence
+            </button>
+          </Link>
+
           <button
             onClick={toggleTheme}
             style={{

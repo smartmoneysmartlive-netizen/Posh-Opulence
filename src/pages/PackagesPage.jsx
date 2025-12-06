@@ -44,7 +44,33 @@ const InvestmentModal = ({ pkg, onConfirm, onCancel }) => {
             : "Unlimited"}
           .
         </p>
-        <p style={{ color: "var(--text-primary)", textAlign: "center" }}>
+        <div
+          style={{
+            textAlign: "center",
+            padding: "0.5rem",
+            background: "var(--bg-surface-raised)",
+            borderRadius: "8px",
+            border: "1px solid var(--border-color)",
+            marginBottom: "1rem",
+          }}
+        >
+          <p
+            style={{
+              margin: 0,
+              fontSize: "0.9rem",
+              color: "var(--text-secondary)",
+            }}
+          >
+            Current Rate: <strong>$1 = ₦1,500</strong>
+          </p>
+        </div>
+        <p
+          style={{
+            color: "var(--text-primary)",
+            textAlign: "center",
+            marginTop: 0,
+          }}
+        >
           Please enter your desired investment amount in Naira (NGN).
         </p>
         <input
@@ -114,6 +140,11 @@ const PackagesPage = ({ user }) => {
     }
   };
 
+  const getDisplayDuration = (duration) => {
+    if (duration === 14) return 10;
+    return duration;
+  };
+
   return (
     <div className="app-container">
       <h1 className="page-title">Investment Plans</h1>
@@ -153,7 +184,7 @@ const PackagesPage = ({ user }) => {
                   Duration
                 </span>
                 <span className="package-stat-value">
-                  {p.duration_days} working days
+                  {getDisplayDuration(p.duration_days)} days
                 </span>
               </div>
 
@@ -189,8 +220,8 @@ const PackagesPage = ({ user }) => {
             <ul className="package-features">
               <li className="package-feature">
                 <FaCheck className="package-feature-icon" />
-                {p.dividend_percentage}% returns in {p.duration_days} working
-                days
+                {p.dividend_percentage}% returns in{" "}
+                {getDisplayDuration(p.duration_days)} days
               </li>
               <li className="package-feature">
                 <FaCheck className="package-feature-icon" />

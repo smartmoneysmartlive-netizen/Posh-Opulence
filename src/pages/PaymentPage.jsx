@@ -84,6 +84,26 @@ const BankTransferForm = ({ userPackageId, onComplete }) => {
     <div className="package-card" style={{ cursor: "default" }}>
       <div className="package-content">
         <h3 style={{ marginBottom: "1rem" }}>Bank Transfer Details</h3>
+        <div
+          style={{
+            textAlign: "center",
+            padding: "0.5rem",
+            background: "var(--bg-surface-raised)",
+            borderRadius: "8px",
+            border: "1px solid var(--border-color)",
+            marginBottom: "1.5rem",
+          }}
+        >
+          <p
+            style={{
+              margin: 0,
+              fontSize: "0.9rem",
+              color: "var(--text-secondary)",
+            }}
+          >
+            Exchange Rate: <strong>$1 = ₦1,500</strong>
+          </p>
+        </div>
         <div style={{ display: "flex", gap: "0.5rem", marginBottom: "1.5rem" }}>
           <button
             type="button"
