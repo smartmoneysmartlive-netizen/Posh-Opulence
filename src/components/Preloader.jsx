@@ -5,7 +5,7 @@ const Preloader = () => {
     <div className="preloader-container">
       <div className="preloader-content">
         <img
-          src="/logo.png"
+          src="/images/logo.jpeg"
           alt="Posh Opulence Logo"
           className="preloader-logo"
         />
