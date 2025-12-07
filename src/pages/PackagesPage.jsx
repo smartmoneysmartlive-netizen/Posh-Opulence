@@ -242,6 +242,18 @@ const PackagesPage = ({ user }) => {
         </div>
       ))}
 
+      <p
+        style={{
+          color: "var(--text-secondary)",
+          fontSize: "0.85rem",
+          textAlign: "center",
+          marginTop: "2rem",
+          fontStyle: "italic",
+        }}
+      >
+        Returns are calculated based on or subject to market conditions.
+      </p>
+
       {showInvestmentModal && selectedPackage && (
         <InvestmentModal
           pkg={selectedPackage}
