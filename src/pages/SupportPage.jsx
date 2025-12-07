@@ -9,8 +9,8 @@ import {
 import { useTheme } from "../context/ThemeContext";
 import { Link } from "react-router-dom";
 
-const WHATSAPP_NUMBER = "1234567890";
-const TELEGRAM_USERNAME = "@Chinonohez"; // Updated Admin Username
+const WHATSAPP_LINK = "https://wa.me/message/AFTAYIQJV2GBP1";
+const TELEGRAM_USERNAME = "Chinonohez";
 
 const SupportPage = () => {
   const { theme, toggleTheme } = useTheme();
@@ -26,7 +26,7 @@ const SupportPage = () => {
             Have questions or need assistance? Reach out to our support team.
           </p>
           <a
-            href={`https://wa.me/${WHATSAPP_NUMBER}`}
+            href={WHATSAPP_LINK}
             target="_blank"
             rel="noopener noreferrer"
             style={{ textDecoration: "none" }}

@@ -4,6 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { useToast } from "../context/ToastContext";
 import { FaCheck, FaClock, FaChartLine, FaMoneyBillWave } from "react-icons/fa";
 
+const planDescriptions = {
+  Conservative: "Perfect for steady, low-risk growth.",
+  Moderate: "A balanced approach for significant returns.",
+  Growth: "Maximized potential for aggressive investors.",
+};
+
 const InvestmentModal = ({ pkg, onConfirm, onCancel }) => {
   const [amount, setAmount] = useState(pkg.min_price.toString());
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -164,6 +170,11 @@ const PackagesPage = ({ user }) => {
         <div key={p.id} className="package-card">
           <div className="package-image-container">
             <img src={p.image_url} alt={p.name} className="package-image" />
+            <div className="package-image-overlay"></div>
+            <div className="package-image-header">
+              <h4>Duration: {getDisplayDuration(p.duration_days)} days</h4>
+              <p>{planDescriptions[p.name]}</p>
+            </div>
             <div className="package-badge">{p.dividend_percentage}% ROI</div>
           </div>
 
