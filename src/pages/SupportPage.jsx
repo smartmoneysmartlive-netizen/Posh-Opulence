@@ -10,7 +10,7 @@ import { useTheme } from "../context/ThemeContext";
 import { Link } from "react-router-dom";
 
 const WHATSAPP_NUMBER = "1234567890";
-const TELEGRAM_USERNAME = "YourAdminUsername";
+const TELEGRAM_USERNAME = "Chinonohez"; // Updated Admin Username
 
 const SupportPage = () => {
   const { theme, toggleTheme } = useTheme();

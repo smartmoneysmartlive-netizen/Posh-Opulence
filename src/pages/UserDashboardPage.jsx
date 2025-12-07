@@ -36,7 +36,7 @@ const WelcomeHero = ({ user, hasInvestments }) => {
 };
 
 const OtherServices = () => {
-  const ADMIN_TELEGRAM_USERNAME = "YourAdminUsername";
+  const ADMIN_TELEGRAM_USERNAME = "Chinonohez"; // Updated Admin Username
   const services = [
     "Sell and Buy USDT",
     "Sell and Buy Bitcoin",
