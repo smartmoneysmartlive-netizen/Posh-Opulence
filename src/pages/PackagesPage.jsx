@@ -67,7 +67,7 @@ const InvestmentModal = ({ pkg, onConfirm, onCancel }) => {
               color: "var(--text-secondary)",
             }}
           >
-            Current Rate: <strong>$1 = ₦1,500</strong>
+            Current Rate: <strong>$1 = ₦1,470</strong>
           </p>
         </div>
         <p
@@ -172,8 +172,8 @@ const PackagesPage = ({ user }) => {
             <img src={p.image_url} alt={p.name} className="package-image" />
             <div className="package-image-overlay"></div>
             <div className="package-image-header">
-              <h4>Duration: {getDisplayDuration(p.duration_days)} days</h4>
-              <p>{planDescriptions[p.name]}</p>
+              {/* <h4>Duration: {getDisplayDuration(p.duration_days)} days</h4>
+              <p>{planDescriptions[p.name]}</p> */}
             </div>
             <div className="package-badge">{p.dividend_percentage}% ROI</div>
           </div>

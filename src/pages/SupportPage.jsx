@@ -5,12 +5,14 @@ import {
   FaMoon,
   FaSun,
   FaInfoCircle,
+  FaEnvelope,
 } from "react-icons/fa";
 import { useTheme } from "../context/ThemeContext";
 import { Link } from "react-router-dom";
 
 const WHATSAPP_LINK = "https://wa.me/message/AFTAYIQJV2GBP1";
 const TELEGRAM_USERNAME = "Chinonohez";
+const SUPPORT_EMAIL = "poshopulenceglobal@gmail.com";
 
 const SupportPage = () => {
   const { theme, toggleTheme } = useTheme();
@@ -58,10 +60,31 @@ const SupportPage = () => {
                 alignItems: "center",
                 justifyContent: "center",
                 gap: "0.5rem",
+                marginBottom: "1rem",
               }}
             >
               <FaTelegram size={20} />
               Contact on Telegram
+            </button>
+          </a>
+          <a
+            href={`mailto:${SUPPORT_EMAIL}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none" }}
+          >
+            <button
+              style={{
+                background: "var(--bg-surface-raised)",
+                color: "var(--text-primary)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "0.5rem",
+              }}
+            >
+              <FaEnvelope size={20} />
+              Send an Email
             </button>
           </a>
         </div>
