@@ -36,7 +36,7 @@ const WelcomeHero = ({ user, hasInvestments }) => {
 };
 
 const OtherServices = () => {
-  const ADMIN_TELEGRAM_USERNAME = "@Chinonohez"; // Updated Admin Username
+  const navigate = useNavigate();
   const services = [
     "Sell and Buy USDT",
     "Sell and Buy Bitcoin",
@@ -62,20 +62,16 @@ const OtherServices = () => {
             marginBottom: "1.5rem",
           }}
         >
-          Interested in any of our other services? Tap to contact an admin for
-          enquiries and transactions.
+          Interested in any of our other services? Tap a service to contact
+          support for enquiries and transactions.
         </p>
         <div
           style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}
         >
           {services.map((service, index) => (
-            <a
+            <button
               key={index}
-              href={`https://t.me/${ADMIN_TELEGRAM_USERNAME}?text=Hello, I'm interested in the ${encodeURIComponent(
-                service
-              )} service.`}
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={() => navigate("/support")}
               style={{
                 textDecoration: "none",
                 color: "var(--text-primary)",
@@ -88,11 +84,13 @@ const OtherServices = () => {
                 justifyContent: "space-between",
                 alignItems: "center",
                 transition: "all 0.2s ease-in-out",
+                boxShadow: "none",
+                textAlign: "left",
               }}
             >
               {service}
               <span style={{ color: "var(--primary-accent)" }}>→</span>
-            </a>
+            </button>
           ))}
         </div>
       </div>

@@ -11,7 +11,7 @@ import { useTheme } from "../context/ThemeContext";
 import { Link } from "react-router-dom";
 
 const WHATSAPP_LINK = "https://wa.me/message/AFTAYIQJV2GBP1";
-const TELEGRAM_USERNAME = "Chinonohez";
+const TELEGRAM_LINK = "https://t.me/Chinonohez";
 const SUPPORT_EMAIL = "poshopulenceglobal@gmail.com";
 
 const SupportPage = () => {
@@ -48,7 +48,7 @@ const SupportPage = () => {
             </button>
           </a>
           <a
-            href={`https://t.me/${TELEGRAM_USERNAME}`}
+            href={TELEGRAM_LINK}
             target="_blank"
             rel="noopener noreferrer"
             style={{ textDecoration: "none" }}
