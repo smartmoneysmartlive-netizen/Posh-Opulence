@@ -10,7 +10,7 @@ const Preloader = () => {
           className="preloader-logo"
         />
         <h1 className="preloader-title">Posh Opulence</h1>
-        <p className="preloader-subtitle">Mutual Funds, since 2023</p>
+        <p className="preloader-subtitle">Mutual Funds, since 2022</p>
       </div>
     </div>
   );

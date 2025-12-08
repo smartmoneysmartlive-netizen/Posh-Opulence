@@ -38,7 +38,7 @@ const AboutPage = () => {
             Posh Opulence Mutual Funds
           </h2>
           <p style={{ color: "var(--text-secondary)" }}>
-            Since 2023, Posh Opulence Mutual Fund has offered a platform that
+            Since 2022, Posh Opulence Mutual Fund has offered a platform that
             acts as a large aggregator of mutual funds online, providing retail
             investors access to a wide range of funds from various professional
             fund managers.
