@@ -380,7 +380,7 @@ const WithdrawalModal = ({ pkg, onClose }) => {
   const { showToast } = useToast();
   const navigate = useNavigate();
 
-  const maxWithdrawableAmount =
+  const dividendEarned =
     pkg.investment_amount * (pkg.package_dividend_percentage / 100);
 
   const handleSubmit = async (details) => {
@@ -389,7 +389,7 @@ const WithdrawalModal = ({ pkg, onClose }) => {
       showToast("Please enter a valid amount.", "error");
       return;
     }
-    if (numericAmount > maxWithdrawableAmount) {
+    if (numericAmount > dividendEarned) {
       showToast("Amount cannot exceed available dividend.", "error");
       return;
     }
@@ -438,8 +438,8 @@ const WithdrawalModal = ({ pkg, onClose }) => {
       <div className="modal-content">
         <h2>Request Dividend Withdrawal</h2>
         <p>
-          Your available dividend for withdrawal is{" "}
-          <strong>{formatPrice(maxWithdrawableAmount)}</strong>.
+          Your dividend available for this cycle is{" "}
+          <strong>{formatPrice(dividendEarned)}</strong>.
         </p>
         <p style={{ color: "var(--text-secondary)", fontSize: "0.9rem" }}>
           Your withdrawal will be processed via{" "}
@@ -469,8 +469,50 @@ const WithdrawalModal = ({ pkg, onClose }) => {
   );
 };
 
+const CompletionModal = ({ onRenew, onClose }) => {
+  return (
+    <div className="modal-overlay">
+      <div className="modal-content" style={{ textAlign: "center" }}>
+        <h2>🎉 Congratulations! 🎉</h2>
+        <p>
+          You have successfully withdrawn dividends equal to or greater than
+          your initial investment amount.
+        </p>
+        <p>Thank you for investing with Posh Opulence.</p>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "1rem",
+            marginTop: "1rem",
+          }}
+        >
+          <button onClick={onRenew}>Start a New Plan</button>
+          <button
+            onClick={onClose}
+            style={{
+              background: "var(--bg-surface-raised)",
+              color: "var(--text-primary)",
+            }}
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const InvestmentCard = ({ pkg }) => {
   const [showWithdrawModal, setShowWithdrawModal] = useState(false);
+  const [showCompletionModal, setShowCompletionModal] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (pkg.status === "withdrawn") {
+      setShowCompletionModal(true);
+    }
+  }, [pkg.status]);
 
   switch (pkg.status) {
     case "paid":
@@ -496,14 +538,12 @@ const InvestmentCard = ({ pkg }) => {
                 </strong>
               </div>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <span>Invested:</span>
+                <span>Capital Invested:</span>
                 <strong>{formatPrice(pkg.investment_amount)}</strong>
               </div>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <span>Expires on:</span>
-                <strong>
-                  {new Date(pkg.expiry_date).toLocaleDateString()}
-                </strong>
+                <span>Dividend Withdrawn:</span>
+                <strong>{formatPrice(pkg.total_withdrawn)}</strong>
               </div>
               <hr
                 style={{
@@ -525,6 +565,71 @@ const InvestmentCard = ({ pkg }) => {
             <WithdrawalModal
               pkg={pkg}
               onClose={() => setShowWithdrawModal(false)}
+            />
+          )}
+        </>
+      );
+    case "expired":
+      return (
+        <div className="package-card">
+          <div className="package-content">
+            <h3>{pkg.package_name}</h3>
+            <p>
+              Status:{" "}
+              <strong style={{ color: "var(--text-secondary)" }}>
+                Withdrawal Pending
+              </strong>
+            </p>
+            <p style={{ color: "var(--text-secondary)" }}>
+              Your dividend withdrawal request for this plan is awaiting admin
+              approval. The investment will automatically renew once approved.
+            </p>
+          </div>
+        </div>
+      );
+    case "withdrawn":
+      return (
+        <>
+          <div className="package-card">
+            <div className="package-content">
+              <h3>{pkg.package_name} - Completed</h3>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  marginBottom: "0.5rem",
+                }}
+              >
+                <span>Capital Invested:</span>
+                <strong>{formatPrice(pkg.investment_amount)}</strong>
+              </div>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <span>Total Dividend Withdrawn:</span>
+                <strong style={{ color: "var(--success-color)" }}>
+                  {formatPrice(pkg.total_withdrawn)}
+                </strong>
+              </div>
+              <hr
+                style={{
+                  borderColor: "var(--border-color)",
+                  width: "100%",
+                  margin: "1rem 0",
+                }}
+              />
+              <p
+                style={{ color: "var(--text-secondary)", textAlign: "center" }}
+              >
+                This investment cycle is complete. Thank you!
+              </p>
+              <button onClick={() => navigate("/packages")}>
+                Start a New Plan
+              </button>
+            </div>
+          </div>
+          {showCompletionModal && (
+            <CompletionModal
+              onRenew={() => navigate("/packages")}
+              onClose={() => setShowCompletionModal(false)}
             />
           )}
         </>
@@ -562,24 +667,6 @@ const InvestmentCard = ({ pkg }) => {
             </p>
             <p style={{ color: "var(--text-secondary)" }}>
               Reason: {pkg.rejection_reason}
-            </p>
-          </div>
-        </div>
-      );
-    case "expired":
-      return (
-        <div className="package-card">
-          <div className="package-content">
-            <h3>{pkg.package_name}</h3>
-            <p>
-              Status:{" "}
-              <strong style={{ color: "var(--text-secondary)" }}>
-                Withdrawal Pending
-              </strong>
-            </p>
-            <p>
-              Your dividend withdrawal request for this plan is awaiting admin
-              approval.
             </p>
           </div>
         </div>

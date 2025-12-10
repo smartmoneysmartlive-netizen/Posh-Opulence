@@ -10,8 +10,8 @@ import {
 import { useTheme } from "../context/ThemeContext";
 import { Link } from "react-router-dom";
 
-const WHATSAPP_LINK = "https://wa.me/message/AFTAYIQJV2GBP1";
-const TELEGRAM_LINK = "https://t.me/Poshopulencemutualfund";
+const WHATSAPP_LINK = "https://wa.me/message/CKIA5RNAIG4WB1";
+const TELEGRAM_LINK = "https://t.me/Poshopulencemutualfunds";
 const SUPPORT_EMAIL = "poshopulenceglobal@gmail.com";
 
 const SupportPage = () => {
