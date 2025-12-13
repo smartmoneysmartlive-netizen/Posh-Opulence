@@ -377,6 +377,7 @@ const CryptoWithdrawalForm = ({
 const WithdrawalModal = ({ pkg, onClose }) => {
   const [amount, setAmount] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
   const { showToast } = useToast();
   const navigate = useNavigate();
 
@@ -402,10 +403,9 @@ const WithdrawalModal = ({ pkg, onClose }) => {
         amount: numericAmount,
         withdrawal_method: pkg.payment_method || "bank_transfer",
       };
-      const res = await requestWithdrawal(payload);
-      showToast(res.data.message, "success");
-      onClose();
-      navigate(0);
+      await requestWithdrawal(payload);
+      setIsSubmitting(false);
+      setShowConfirmation(true);
     } catch (error) {
       showToast(error.response?.data?.message || "Request failed", "error");
       setIsSubmitting(false);
@@ -465,6 +465,32 @@ const WithdrawalModal = ({ pkg, onClose }) => {
           Cancel
         </button>
       </div>
+      {showConfirmation && (
+        <div className="modal-overlay">
+          <div className="modal-content" style={{ textAlign: "center" }}>
+            <h2>Withdrawal request message</h2>
+            <p>
+              <em>Your Withdrawal Request is being worked on now</em>
+            </p>
+            <p>Your withdrawal request has been received and is in process</p>
+            <p>
+              Please note that allow 2-5 working days to complete the
+              transaction.
+            </p>
+            <div style={{ marginTop: "1rem" }}>
+              <button
+                onClick={() => {
+                  setShowConfirmation(false);
+                  onClose();
+                  navigate(0);
+                }}
+              >
+                OK
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
